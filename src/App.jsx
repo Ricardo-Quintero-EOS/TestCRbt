@@ -12,7 +12,13 @@ export default function App() {
       return
     }
 
-    setTasks((currentTasks) => [...currentTasks, trimmedTask])
+    setTasks((currentTasks) => [
+      ...currentTasks,
+      {
+        id: crypto.randomUUID(),
+        text: trimmedTask,
+      },
+    ])
     setTask('')
   }
 
@@ -37,8 +43,8 @@ export default function App() {
 
       <ul className="todo-list">
         {tasks.map((item, index) => (
-          <li key={`${item}-${index}`}>
-            <span>{item}</span>
+          <li key={item.id}>
+            <span>{item.text}</span>
             <button type="button" onClick={() => removeTask(index)}>
               Remove
             </button>
