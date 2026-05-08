@@ -22,9 +22,9 @@ export default function App() {
     setTask('')
   }
 
-  const removeTask = (indexToRemove) => {
+  const removeTask = (idToRemove) => {
     setTasks((currentTasks) =>
-      currentTasks.filter((_, taskIndex) => taskIndex !== indexToRemove),
+      currentTasks.filter((task) => task.id !== idToRemove),
     )
   }
 
@@ -42,10 +42,10 @@ export default function App() {
       </form>
 
       <ul className="todo-list">
-        {tasks.map((item, index) => (
+        {tasks.map((item) => (
           <li key={item.id}>
             <span>{item.text}</span>
-            <button type="button" onClick={() => removeTask(index)}>
+            <button type="button" onClick={() => removeTask(item.id)}>
               Remove
             </button>
           </li>
